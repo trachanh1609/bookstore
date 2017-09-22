@@ -13,6 +13,7 @@ public class Book {
     private String author;
     private String title;
     private String isbn;
+    private String year;
     
     public String getTitle() {
 		return title;
@@ -22,13 +23,12 @@ public class Book {
 		this.title = title;
 	}
 
-	private String year;
-
     public Book() {}
 
-	public Book(String author, String isbn, String year) {
+	public Book(String author, String title, String isbn, String year) {
 		super();
 		this.author = author;
+		this.title = title;
 		this.isbn = isbn;
 		this.year = year;
 	}

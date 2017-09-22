@@ -45,12 +45,12 @@ public class BookStoreController {
 //        return "addbook";
 //    }
     
-//    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-//    public String editBook(@PathVariable("id") Long bookId, Model model) {
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editBook(@PathVariable("id") Long bookId, Model model) {
 //    		repository.save(book);
-//    	repository.delete(bookId);
+//    		repository.delete(bookId);
 //        return "redirect:../booklist";
-//    		model.addAttribute("book", repository.findOne(bookId));
-//    		return "redirect:../addbook";
-//    	}
+    		model.addAttribute("book", repository.findOne(bookId));
+    		return "editBook";
+    	}
 }
