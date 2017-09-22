@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import Haaga.bookstore.domain.Book;
 import Haaga.bookstore.domain.BookRepository;
+import Haaga.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookStoreController {
 	@Autowired
 	private BookRepository repository;
+	
+	@Autowired
+	private CategoryRepository crepository; 
 
     @RequestMapping(value="/booklist")
     public String bookList(Model model) {
@@ -24,6 +28,7 @@ public class BookStoreController {
     @RequestMapping(value = "/add")
     public String addBook(Model model){
     	model.addAttribute("book", new Book());
+    	model.addAttribute("categories", crepository.findAll());
         return "addbook";
     }
 
@@ -38,19 +43,11 @@ public class BookStoreController {
     	repository.delete(bookId);
         return "redirect:../booklist";
     }
-    
-//    @RequestMapping(value = "/edit")
-//    public String editBook(Model model){
-//    	model.addAttribute("book", new Book());
-//        return "addbook";
-//    }
-    
+        
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editBook(@PathVariable("id") Long bookId, Model model) {
-//    		repository.save(book);
-//    		repository.delete(bookId);
-//        return "redirect:../booklist";
     		model.addAttribute("book", repository.findOne(bookId));
+    		model.addAttribute("categories", crepository.findAll());
     		return "editBook";
     	}
 }
