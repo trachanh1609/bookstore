@@ -20,7 +20,17 @@ public class BookStoreController {
 	private BookRepository repository;
 	
 	@Autowired
-	private CategoryRepository crepository; 
+	private CategoryRepository crepository;
+	
+	@RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }
+	
+	@RequestMapping(value="/")
+    public String home() {	
+		return "redirect:booklist";
+	}
 
     @RequestMapping(value="/booklist")
     public String bookList(Model model) {
