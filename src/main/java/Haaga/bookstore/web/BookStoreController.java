@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import Haaga.bookstore.domain.Book;
 import Haaga.bookstore.domain.BookRepository;
 import Haaga.bookstore.domain.CategoryRepository;
+import Haaga.bookstore.domain.UserRepository;
 
 @Controller
 public class BookStoreController {
@@ -21,6 +22,9 @@ public class BookStoreController {
 	
 	@Autowired
 	private CategoryRepository crepository;
+	
+	@Autowired
+	private UserRepository urepository;
 	
 	@RequestMapping(value="/login")
     public String login() {	
@@ -35,6 +39,7 @@ public class BookStoreController {
     @RequestMapping(value="/booklist")
     public String bookList(Model model) {
         model.addAttribute("books", repository.findAll());
+        model.addAttribute("users", urepository.findAll());
         return "booklist";
     }
 

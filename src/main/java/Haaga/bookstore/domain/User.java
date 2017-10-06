@@ -20,8 +20,18 @@ public class User {
 	@Column(name = "password", nullable = false)
 	private String passwordHash;
 	
-	@Column(name = "email", nullable = false)
+	@Column(name = "email", nullable = true)
 	private String email;
+	
+	public User() {
+    }
+	
+	public User(String username, String passwordHash, String role) {
+		super();
+		this.username = username;
+		this.passwordHash = passwordHash;
+		this.role = role;
+	}
 	
 	public String getEmail() {
 		return email;
