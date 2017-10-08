@@ -8,7 +8,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
     
 </head>
 <body>
-	<h1>Books</h1>
+	<h1>Spring Boot Bookstore</h1>
 	<h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
 	<form th:action="@{/logout}" method="post">
 		<input type="submit" class="btn btn-danger" value="Sign Out"/>
@@ -32,8 +32,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
  			<td>
  				<a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-info">Edit</a>
  				
- 				<a th:href="@{/delete/{id}(id=${book.id})}" sec:authorize="hasRole('ADMIN')" class="btn btn-danger">Delete</a>
+ 			<!-- 	<a th:href="@{/delete/{id}(id=${book.id})}" sec:authorize="hasRole('ADMIN')" class="btn btn-danger">Delete</a> -->
  				
+ 				<a th:href="@{/delete/{id}(id=${book.id})}" sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger">Delete</a>
+	
  				
  			</td>
     	</tr>
